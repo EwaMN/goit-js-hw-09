@@ -3,36 +3,23 @@ function getRandomHexColor() {
 }
 
 const body = document.querySelector('body');
-const btnStart = document.querySelector('button[data-start]');
-const btnStop = document.querySelector('button[data-stop]');
+const buttonStart = document.querySelector('button[data-start]');
+const buttonStop = document.querySelector('button[data-stop]');
 
+let backgroundChange = null;
 
-btnStart.style.width = '150px';
-btnStart.style.height = '50px';
-btnStart.style.fontSize = '20px';
-btnStart.style.position = 'absolute';
-btnStart.style.left = '10vw';
-
-btnStop.style.width = '150px';
-btnStop.style.height = '50px';
-btnStop.style.fontSize = '20px';
-btnStop.style.position = 'absolute';
-btnStop.style.left = '25vw';
-
-let bgChange = null;
-
-const colorChanger = () => {
+const colorChange = () => {
   return (body.style.backgroundColor = `${getRandomHexColor()}`);
 };
 
 const colorStop = () => {
-  clearInterval(bgChange);
-  btnStart.disabled = false;
+  clearInterval(backgroundChange);
+  buttonStart.disabled = false;
 };
 
-btnStart.addEventListener('click', () => {
-  bgChange = setInterval(colorChanger, 1000);
-  btnStart.disabled = true;
+buttonStart.addEventListener('click', () => {
+  backgroundChange = setInterval(colorChange, 1000);
+  buttonStart.disabled = true;
 });
 
-btnStop.addEventListener('click', colorStop);
+buttonStop.addEventListener('click', colorStop);
